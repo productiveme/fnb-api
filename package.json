@@ -1,9 +1,12 @@
 {
-  "name": "fnb-api",
+  "name": "@productiveme/fnb-api",
   "version": "1.0.9",
   "description": "API to easily access bank data from FNB",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "publishConfig": {
+    "registry": "http://nexus.productive.me/repository/npm"
+  },
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
@@ -17,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitshiftza/fnb-api.git"
+    "url": "git+https://github.com/productiveme/fnb-api.git"
   },
-  "author": "bitshiftza",
+  "author": "bitshiftza, productiveme",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/bitshiftza/fnb-api/issues"
+    "url": "https://github.com/productiveme/fnb-api/issues"
   },
-  "homepage": "https://github.com/bitshiftza/fnb-api#readme",
+  "homepage": "https://github.com/productiveme/fnb-api#readme",
   "keywords": [
     "FNB",
     "First National Bank",

@@ -39,6 +39,22 @@ describe('using the api', () => {
 		).reduce((a, b) => a + b, 0)
 	}
 
+	test('can get accounts, totals and transactions', async () => {
+		const accounts = await global.FnbApi.accounts.get()
+
+		console.log(accounts)
+		console.log('---------------------')
+
+		const detailedBalance = await accounts[0].detailedBalance()
+		console.log(detailedBalance)
+		console.log('---------------------')
+
+		const transactions = await accounts[0].transactions()
+		console.dir(transactions.slice(0,3))
+
+		expect(true).toBe(true)
+	})
+
 	test('can calculate totals by type', async () => {
 		const accounts = await global.FnbApi.accounts.get()
 		const groupedAccounts = await groupAccounts(accounts)
@@ -60,22 +76,6 @@ describe('using the api', () => {
 
 		console.table(totals)
 		console.log('Total', formatMoney(chequeTotal + creditTotal + savingsTotal + vehicleTotal))
-
-		expect(true).toBe(true)
-	})
-
-	test('can get accounts, totals and transactions', async () => {
-		const accounts = await global.FnbApi.accounts.get()
-
-		console.log(accounts)
-		console.log('---------------------')
-
-		const detailedBalance = await accounts[0].detailedBalance()
-		console.log(detailedBalance)
-		console.log('---------------------')
-
-		const transactions = await accounts[0].transactions()
-		console.log(transactions[0])
 
 		expect(true).toBe(true)
 	})
