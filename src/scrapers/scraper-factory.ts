@@ -1,5 +1,5 @@
-import { Scraper } from './scraper'
-import { ApiOptions } from '../api/fnb-api'
+import {Scraper} from './scraper'
+import {ApiOptions} from '../api/fnb-api'
 
 let _instance: Scraper
 

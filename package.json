@@ -5,8 +5,15 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "test": "clear && ts-node --project tsconfig.test.json ./test/index.ts"
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "build": "npm run compile",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile"
   },
   "repository": {
     "type": "git",
@@ -27,14 +34,19 @@
     "moment": "^2.24.0",
     "puppeteer": "^2.1.1"
   },
-  "devDependencies": {
-    "@types/jquery": "^3.3.32",
+    "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@types/jquery": "^3.5.5",
     "@types/puppeteer": "^2.0.0",
+    "@types/node": "^14.11.2",
     "dotenv": "^8.2.0",
+    "gts": "^3.1.0",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
     "prettier": "^2.0.5",
     "ts-node": "^8.10.1",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.5"
+    "typescript": "^4.0.3"
   }
 }

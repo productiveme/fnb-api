@@ -1,6 +1,6 @@
 .git/
 src/
-test/
+__tests__/
 .env
 .tsconfig.json
 .tslint.json

@@ -1,7 +1,6 @@
-import { Transaction, TransactionInitData } from './transaction'
+import {Transaction, TransactionInitData} from './transaction'
 
-export interface TransactionCreditInitData extends TransactionInitData {
-}
+export type TransactionCreditInitData = TransactionInitData
 
 /** Provides access to all data FNB provide for a credit account transaction. */
 export class TransactionCredit extends Transaction {

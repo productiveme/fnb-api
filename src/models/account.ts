@@ -1,16 +1,16 @@
-import { AccountType } from './account-type'
-import { DebitOrder } from './debit-order'
-import { DetailedBalance } from './detailed-balance'
-import { Transaction } from './transaction'
-import { getScraper } from '../scrapers/scraper-factory'
-import { DetailedBalanceSavings } from './detailed-balance-savings'
-import { TransactionSavings } from './transaction-savings'
-import { DetailedBalanceCheque } from './detailed-balance-cheque'
-import { TransactionCheque } from './transaction-cheque'
-import { DetailedBalanceCredit } from './detailed-balance-credit'
-import { TransactionCredit } from './transaction-credit'
-import { DetailedBalanceVehicle } from './detailed-balance-vehicle'
-import { TransactionVehicle } from './transaction-vehicle'
+import {AccountType} from './account-type'
+import {DebitOrder} from './debit-order'
+import {DetailedBalance} from './detailed-balance'
+import {Transaction} from './transaction'
+import {getScraper} from '../scrapers/scraper-factory'
+import {DetailedBalanceSavings} from './detailed-balance-savings'
+import {TransactionSavings} from './transaction-savings'
+import {DetailedBalanceCheque} from './detailed-balance-cheque'
+import {TransactionCheque} from './transaction-cheque'
+import {DetailedBalanceCredit} from './detailed-balance-credit'
+import {TransactionCredit} from './transaction-credit'
+import {DetailedBalanceVehicle} from './detailed-balance-vehicle'
+import {TransactionVehicle} from './transaction-vehicle'
 
 export interface AccountInitData {
 	name: string
@@ -20,7 +20,7 @@ export interface AccountInitData {
 }
 
 /** Represents an FNB account and provides access to more granular account data. */
-export class Account<TBalance extends DetailedBalance = DetailedBalance, TTransaction extends Transaction = Transaction>  {
+export class Account<TBalance extends DetailedBalance = DetailedBalance, TTransaction extends Transaction = Transaction> {
 	/** The "nickname" of the account */
 	public readonly name: string
 

@@ -1,6 +1,6 @@
-import { Moment } from 'moment'
-import { TransactionStatus } from './transaction-status'
-import { Transaction, TransactionInitData } from './transaction'
+import {Moment} from 'moment'
+import {TransactionStatus} from './transaction-status'
+import {Transaction, TransactionInitData} from './transaction'
 
 export interface TransactionChequeInitData extends TransactionInitData {
 	date: Moment
@@ -14,7 +14,6 @@ export interface TransactionChequeInitData extends TransactionInitData {
 
 /** Provides access to all data FNB provide for a cheque account transaction. */
 export class TransactionCheque extends Transaction {
-
 	/** The reference number provided for the transaction. */
 	public readonly reference: string | undefined
 

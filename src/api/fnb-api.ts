@@ -1,8 +1,8 @@
-import { AccountLoader } from './account-loader'
-import { LaunchOptions } from 'puppeteer'
-import { Scraper, getScraper } from '../scrapers'
+import {AccountLoader} from './account-loader'
+import {LaunchOptions} from 'puppeteer'
+import {Scraper, getScraper} from '../scrapers'
 
-/** 
+/**
  * Configuration options for the FNB Api.
  * @see FnbApi
  */

@@ -1,10 +1,10 @@
-import moment, { Moment } from 'moment'
+import moment, {Moment} from 'moment'
 
 /** Provides access to all data FNB provide for a debit order. */
 export class DebitOrder {
 	/** The date the debit order was processed. */
 	public readonly date: Moment
-	
+
 	/** The description provided for the debit order. */
 	public readonly description: string
 

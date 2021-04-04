@@ -1,19 +1,19 @@
-import { Page, SerializableOrJSHandle } from 'puppeteer'
-import { Account } from '../models/account'
+import {Page, SerializableOrJSHandle} from 'puppeteer'
+import {Account} from '../models/account'
 
 export const navigateToMyBankAccounts = async (page: Page) => {
 	const indexOfTab = await page.evaluate(() => {
 		/* tslint:disable */
-		var mainTabs = $('.shortCutLink');
+		const mainTabs = $('.shortCutLink')
 
-		var index = null;
-		mainTabs.each(function (i, item) {
+		let index = null
+		mainTabs.each((i, item) => {
 			if (item && item.textContent && item.textContent.indexOf('Accounts') !== -1) {
-				index = i;
+				index = i
 			}
-		});
+		})
 
-		return index;
+		return index
 		/* tslint:enable */
 	})
 
@@ -29,19 +29,21 @@ export const navigateToMyBankAccounts = async (page: Page) => {
 export const navigateToAccount = async (page: Page, account: Account, tab: string) => {
 	await navigateToMyBankAccounts(page)
 	const accountId = await page.evaluate((acc: Account) => {
-
 		/* tslint:disable */
-		const names = $('[name="nickname"]');
+		const names = $('[name="nickname"]')
 		for (let i = 0; i < names.length; i++) {
-			const accountName = (names[i].textContent || '').replace(/[\n\t]+/, '').replace(/[\n\t]+/, '').trim();
+			const accountName = (names[i].textContent || '')
+				.replace(/[\n\t]+/, '')
+				.replace(/[\n\t]+/, '')
+				.trim()
 			if (accountName === acc.name) {
-				return names[i].id;
+				return names[i].id
 			}
 		}
 		/* tslint:enable */
 
 		return null
-	}, account as unknown as SerializableOrJSHandle)
+	}, (account as unknown) as SerializableOrJSHandle)
 
 	if (accountId === null) {
 		throw new Error('Could not find account to navigate to')
@@ -52,15 +54,15 @@ export const navigateToAccount = async (page: Page, account: Account, tab: strin
 
 	const indexOfTab = await page.evaluate((text: string) => {
 		/* tslint:disable */
-		var tabs = $('.subTabText');
-		for (var i = 0; i < tabs.length; i++) {
-			var tab = (tabs[i].textContent || '').trim();
+		const tabs = $('.subTabText')
+		for (let i = 0; i < tabs.length; i++) {
+			const tab = (tabs[i].textContent || '').trim()
 			if (tab.indexOf(text) !== -1) {
-				return i;
+				return i
 			}
 		}
 
-		return null;
+		return null
 		/* tslint:enable */
 	}, tab)
 

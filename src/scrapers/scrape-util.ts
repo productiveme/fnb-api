@@ -1,5 +1,5 @@
-import { AccountType } from '../models/account-type'
-import { Page } from 'puppeteer'
+import {AccountType} from '../models/account-type'
+import {Page} from 'puppeteer'
 
 export const getAccountType = (text: string, hasEngineNumber: boolean) => {
 	if (text.indexOf('Cheque') !== -1 || text.indexOf('Business Account') !== -1 || text.indexOf('Fusion') !== -1) {
@@ -14,11 +14,11 @@ export const getAccountType = (text: string, hasEngineNumber: boolean) => {
 		return AccountType.Savings
 	}
 
-	if(text.indexOf('eBucks') !== -1) {
+	if (text.indexOf('eBucks') !== -1) {
 		return AccountType.eBucks
 	}
 
-	if(hasEngineNumber) {
+	if (hasEngineNumber) {
 		return AccountType.Vehicle
 	}
 

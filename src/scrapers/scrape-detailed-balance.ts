@@ -1,13 +1,13 @@
-import { Page } from 'puppeteer'
-import { Account } from '../models/account'
-import { AccountType } from '../models/account-type'
-import { evaluateAccountType } from './scrape-util'
-import { navigateToAccount } from './navigator'
-import { DetailedBalance } from '../models/detailed-balance'
-import { scrapeCredit } from './scrape-detailed-balance-credit'
-import { scrapeCheque } from './scrape-detailed-balance-cheque'
-import { scrapeSavings } from './scrape-detailed-balance-savings'
-import { scrapeVehicle } from './scrape-detailed-balance-vehicle'
+import {Page} from 'puppeteer'
+import {Account} from '../models/account'
+import {AccountType} from '../models/account-type'
+import {evaluateAccountType} from './scrape-util'
+import {navigateToAccount} from './navigator'
+import {DetailedBalance} from '../models/detailed-balance'
+import {scrapeCredit} from './scrape-detailed-balance-credit'
+import {scrapeCheque} from './scrape-detailed-balance-cheque'
+import {scrapeSavings} from './scrape-detailed-balance-savings'
+import {scrapeVehicle} from './scrape-detailed-balance-vehicle'
 
 export interface DetailedBalanceResponse {
 	balance: DetailedBalance
@@ -42,6 +42,6 @@ export const scrapeDetailedBalance = async (page: Page, account: Account): Promi
 
 	return {
 		balance,
-		accountType
+		accountType,
 	}
 }

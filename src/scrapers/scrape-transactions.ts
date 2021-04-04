@@ -1,15 +1,14 @@
-import { Page } from 'puppeteer'
-import { Account } from '../models/account'
-import { AccountType } from '../models/account-type'
-import { evaluateAccountType } from './scrape-util'
-import { navigateToAccount } from './navigator'
-import { Transaction } from '../models/transaction'
-import { TransactionCheque, TransactionChequeInitData } from '../models/transaction-cheque'
-import { TransactionSavings, TransactionSavingsInitData } from '../models/transaction-savings'
-import { TransactionCredit } from '../models/transaction-credit'
-import { TransactionStatus } from '../models/transaction-status'
+import {Page} from 'puppeteer'
+import {Account} from '../models/account'
+import {AccountType} from '../models/account-type'
+import {evaluateAccountType} from './scrape-util'
+import {navigateToAccount} from './navigator'
+import {Transaction} from '../models/transaction'
+import {TransactionCheque, TransactionChequeInitData} from '../models/transaction-cheque'
+import {TransactionSavings, TransactionSavingsInitData} from '../models/transaction-savings'
+import {TransactionCredit} from '../models/transaction-credit'
+import {TransactionStatus} from '../models/transaction-status'
 import moment from 'moment'
-
 
 export interface TransactionsResponse {
 	transactions: Transaction[]
@@ -26,12 +25,12 @@ async function scrapeChequeOrSavings<T extends TransactionChequeInitData>(page: 
 	const rows = await page.evaluate(() => {
 		/* tslint:disable */
 
-		var data = [];
+		const data = []
 
-		var rows = $('.tableRow');
-		for (var i = 0; i < rows.length; i++) {
-			var row = $(rows[i]);
-			var cells = row.find('.tableCell .tableCellItem');
+		const rows = $('.tableRow')
+		for (let i = 0; i < rows.length; i++) {
+			const row = $(rows[i])
+			const cells = row.find('.tableCell .tableCellItem')
 
 			data.push({
 				date: cells[0].innerText as any,
@@ -40,23 +39,26 @@ async function scrapeChequeOrSavings<T extends TransactionChequeInitData>(page: 
 				serviceFee: cells[3].innerText as any,
 				amount: cells[4].innerText as any,
 				balance: cells[5].innerText as any,
-				status: 'Successful'
-			});
+				status: 'Successful',
+			})
 		}
 
-		return data;
+		return data
 		/* tslint:enable */
 	})
 
-	return rows.map((x: any) => ({
-		date: moment(x.date, 'DD MMM YYYY'),
-		description: x.description,
-		reference: x.reference,
-		serviceFee: cleanNumber(x.serviceFee),
-		amount: cleanNumber(x.amount),
-		balance: cleanNumber(x.balance),
-		status: TransactionStatus.Successful
-	}) as T)
+	return rows.map(
+		(x: any) =>
+			({
+				date: moment(x.date, 'DD MMM YYYY'),
+				description: x.description,
+				reference: x.reference,
+				serviceFee: cleanNumber(x.serviceFee),
+				amount: cleanNumber(x.amount),
+				balance: cleanNumber(x.balance),
+				status: TransactionStatus.Successful,
+			} as T)
+	)
 }
 
 const scrapeCheque = async (page: Page): Promise<TransactionCheque[]> => {
@@ -71,31 +73,34 @@ const scrapeCredit = async (page: Page): Promise<TransactionCredit[]> => {
 	const rows = await page.evaluate(() => {
 		/* tslint:disable */
 
-		var data = [];
+		const data = []
 
-		var rows = $('.tableRow');
-		for (var i = 0; i < rows.length; i++) {
-			var row = $(rows[i]);
-			var cells = row.find('.tableCell .tableCellItem');
+		const rows = $('.tableRow')
+		for (let i = 0; i < rows.length; i++) {
+			const row = $(rows[i])
+			const cells = row.find('.tableCell .tableCellItem')
 
 			data.push({
 				date: cells[0].innerText as any,
 				description: cells[1].innerText,
 				amount: cells[2].innerText as any,
-				status: 'Successful'
-			});
+				status: 'Successful',
+			})
 		}
 
-		return data;
+		return data
 		/* tslint:enable */
 	})
 
-	return rows.map((x: any) => new TransactionCredit({
-		date: moment(x.date, 'DD MMM YYYY'),
-		description: x.description,
-		amount: cleanNumber(x.amount),
-		status: TransactionStatus.Successful
-	}))
+	return rows.map(
+		(x: any) =>
+			new TransactionCredit({
+				date: moment(x.date, 'DD MMM YYYY'),
+				description: x.description,
+				amount: cleanNumber(x.amount),
+				status: TransactionStatus.Successful,
+			})
+	)
 }
 
 export const scrapeTransactions = async (page: Page, account: Account): Promise<TransactionsResponse> => {
@@ -123,6 +128,6 @@ export const scrapeTransactions = async (page: Page, account: Account): Promise<
 
 	return {
 		transactions,
-		accountType
+		accountType,
 	}
 }

@@ -1,7 +1,6 @@
-import { TransactionCheque, TransactionChequeInitData } from './transaction-cheque'
+import {TransactionCheque, TransactionChequeInitData} from './transaction-cheque'
 
-export interface TransactionVehicleInitData extends TransactionChequeInitData {
-}
+export type TransactionVehicleInitData = TransactionChequeInitData
 
 /** Provides access to all data FNB provide for a vehicle account transaction. */
 export class TransactionVehicle extends TransactionCheque {

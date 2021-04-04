@@ -1,6 +1,6 @@
 export function formatMoney(amount: number | string, mustDivide = true, currency = '', decimalCount = 2, decimal = '.', thousands = ',') {
-	if(mustDivide) {
-		if(typeof amount === 'number') {
+	if (mustDivide) {
+		if (typeof amount === 'number') {
 			amount /= 100
 		} else {
 			amount = parseInt(amount, 10) / 100

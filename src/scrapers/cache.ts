@@ -1,13 +1,13 @@
-import moment, { Moment } from 'moment'
-import { ApiOptions } from '../api/fnb-api'
-import { Account } from '../models/account'
-import { DetailedBalanceResponse } from './scrape-detailed-balance'
-import { TransactionsResponse } from './scrape-transactions'
+import moment, {Moment} from 'moment'
+import {ApiOptions} from '../api/fnb-api'
+import {Account} from '../models/account'
+import {DetailedBalanceResponse} from './scrape-detailed-balance'
+import {TransactionsResponse} from './scrape-transactions'
 
 interface CacheDictionary {
 	[key: string]: {
-		date: Moment;
-		value: object;
+		date: Moment
+		value: object
 	}
 }
 
@@ -31,13 +31,13 @@ export class Cache {
 			return undefined
 		}
 
-		return entry.value as any as T
+		return (entry.value as any) as T
 	}
 
 	private _setValue(key: string, value: object) {
 		this._cache[key] = {
 			date: moment(),
-			value
+			value,
 		}
 	}
 

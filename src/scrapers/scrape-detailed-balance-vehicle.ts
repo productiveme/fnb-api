@@ -1,20 +1,20 @@
-import { Page } from 'puppeteer'
+import {Page} from 'puppeteer'
 import moment from 'moment'
-import { DetailedBalanceVehicle } from '../models'
+import {DetailedBalanceVehicle} from '../models'
 
 export const scrapeVehicle = async (page: Page): Promise<DetailedBalanceVehicle> => {
 	const getTextForRow = async (rowTitle: string) => {
 		/* tslint:disable */
-		const val = `.formElementLabel:contains("${rowTitle}") + div`;
+		const val = `.formElementLabel:contains("${rowTitle}") + div`
 		return await page.evaluate((toEval: string) => {
-			var elem = $(toEval);
-			if(elem.length === 0) {
+			const elem = $(toEval)
+			if (elem.length === 0) {
 				// TODO: Will this ever be the case? Assuming not...
 				return ''
 			}
 
 			return elem[0].innerText.trim()
-		}, val);
+		}, val)
 		/* tslint:enable */
 	}
 
@@ -33,7 +33,7 @@ export const scrapeVehicle = async (page: Page): Promise<DetailedBalanceVehicle>
 			contractPeriod: parseInt(await getTextForRow('Contract Period'), 10),
 			ageOfDeal: parseInt(await getTextForRow('Age of Deal'), 10),
 			paymentFrequency: await getTextForRow('Payment Frequency'),
-			paymentMode: await getTextForRow('Payment Mode')
+			paymentMode: await getTextForRow('Payment Mode'),
 		},
 		paymentDetails: {
 			originalContractBalance: toCurrency(await getTextForRow('Original Contract Balance')),
@@ -41,13 +41,13 @@ export const scrapeVehicle = async (page: Page): Promise<DetailedBalanceVehicle>
 			originalCapitalBalance: toCurrency(await getTextForRow('Original Capital Balance')),
 			currentCapitalBalance: toCurrency(await getTextForRow('Current Capital Balance')),
 			originalInterestRate: toCurrency(await getTextForRow('Original Interest Rate')),
-			currentInterestRate: toCurrency(await getTextForRow('Current Interest Rate'))
+			currentInterestRate: toCurrency(await getTextForRow('Current Interest Rate')),
 		},
 		instalmentDetails: {
 			currentInstalmentAmount: toCurrency(await getTextForRow('Current Instalment Amount')),
 			dateOfNextInstalment: moment(await getTextForRow('Date of Next Instalment'), 'DD MMM YYYY'),
 			previousInstalmentDate: moment(await getTextForRow('Previous Instalment Date'), 'DD MMM YYYY'),
-			finalInstalmentDate: moment(await getTextForRow('Final Instalment Date'), 'DD MMM YYYY')
+			finalInstalmentDate: moment(await getTextForRow('Final Instalment Date'), 'DD MMM YYYY'),
 		},
 		assetDetails: {
 			description: await getTextForRow('Asset Description'),
@@ -62,6 +62,6 @@ export const scrapeVehicle = async (page: Page): Promise<DetailedBalanceVehicle>
 			accountHolder: await getTextForRow('Account Holder'),
 			branchCode: await getTextForRow('Branch Code'),
 			accountNumber: await getTextForRow('Account Number'),
-		}
+		},
 	})
 }

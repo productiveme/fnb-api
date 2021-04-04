@@ -1,5 +1,5 @@
-import { Moment } from 'moment'
-import { TransactionStatus } from './transaction-status'
+import {Moment} from 'moment'
+import {TransactionStatus} from './transaction-status'
 
 export interface TransactionInitData {
 	date: Moment
@@ -19,7 +19,7 @@ export class Transaction {
 	/** The amount of the transaction. */
 	public readonly amount: number
 
-	/** 
+	/**
 	 * The status of the transaction.
 	 * @see TransactionStatus
 	 */

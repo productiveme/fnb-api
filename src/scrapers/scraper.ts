@@ -1,11 +1,11 @@
-import moment, { Moment } from 'moment'
-import { launch, Browser, Page } from 'puppeteer'
-import { ApiOptions } from '../api/fnb-api'
-import { Account } from '../models/account'
+import moment, {Moment} from 'moment'
+import {launch, Browser, Page} from 'puppeteer'
+import {ApiOptions} from '../api/fnb-api'
+import {Account} from '../models/account'
 import scrapeAccounts from './scrape-accounts'
-import { scrapeDetailedBalance, DetailedBalanceResponse } from './scrape-detailed-balance'
-import { scrapeTransactions, TransactionsResponse } from './scrape-transactions'
-import { Cache } from './cache'
+import {scrapeDetailedBalance, DetailedBalanceResponse} from './scrape-detailed-balance'
+import {scrapeTransactions, TransactionsResponse} from './scrape-transactions'
+import {Cache} from './cache'
 
 export class Scraper {
 	private _loginDate: Moment | undefined
@@ -78,14 +78,18 @@ export class Scraper {
 			try {
 				await this._page.close()
 				this._page = undefined
-			} catch { }
+			} catch {
+				//ignore
+			}
 		}
 
 		if (this._browser) {
 			try {
 				await this._browser.close()
 				this._browser = undefined
-			} catch { }
+			} catch {
+				// ignore
+			}
 		}
 	}
 
@@ -104,17 +108,19 @@ export class Scraper {
 
 		this._browser = await launch(this._options.puppeteerOptions || {})
 		this._page = await this._browser.newPage()
-		this._page.setViewport({ width: 1280, height: 720 })
+		this._page.setViewport({width: 1280, height: 720})
 
 		await this._page.goto('https://fnb.co.za')
 		await this._page.type('#user', this._options.username)
 		await this._page.type('#pass', this._options.password)
 		await this._page.click('input[type="submit"]')
 
-		await this._page.waitForFunction(() =>
-			!!document.getElementById('newsLanding') ||
-			document.getElementsByClassName('footerBtn').length !== 0 ||
-			$('.loginPanel.overlayPanelHide').length > 0)
+		await this._page.waitForFunction(
+			() =>
+				!!document.getElementById('newsLanding') ||
+				document.getElementsByClassName('footerBtn').length !== 0 ||
+				$('.loginPanel.overlayPanelHide').length > 0
+		)
 
 		const loginFailed = await this._page.evaluate(() => $('.loginPanel.overlayPanelHide').length === 0)
 		if (loginFailed) {

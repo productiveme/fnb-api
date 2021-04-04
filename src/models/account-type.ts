@@ -7,5 +7,5 @@ export enum AccountType {
 	Credit = 'Credit',
 	eBucks = 'eBucks',
 	Vehicle = 'Vehicle',
-	Other = 'Other'
+	Other = 'Other',
 }

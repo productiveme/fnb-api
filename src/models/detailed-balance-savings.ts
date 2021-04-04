@@ -1,8 +1,6 @@
-import { DetailedBalanceCheque } from './detailed-balance-cheque'
+import {DetailedBalanceCheque} from './detailed-balance-cheque'
 
-export interface DetailedBalanceSavingsInitData {
-}
+export interface DetailedBalanceSavingsInitData {}
 
 /** Provides access to all data FNB provide for the detailed balance of a savings account. */
-export class DetailedBalanceSavings extends DetailedBalanceCheque {
-}
+export class DetailedBalanceSavings extends DetailedBalanceCheque {}
