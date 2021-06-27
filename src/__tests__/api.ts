@@ -50,7 +50,7 @@ describe('using the api', () => {
 		console.log('---------------------')
 
 		const transactions = await accounts[0].transactions()
-		console.dir(transactions.slice(0,3))
+		console.dir(transactions.slice(0, 3))
 
 		expect(true).toBe(true)
 	})
