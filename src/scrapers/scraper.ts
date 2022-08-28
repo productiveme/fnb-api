@@ -1,7 +1,7 @@
-import moment, {Moment} from 'moment'
-import {launch, Browser, Page} from 'puppeteer'
-import {ApiOptions} from '../api/fnb-api'
-import {Account} from '../models/account'
+import moment, { Moment } from 'moment'
+import puppeteer from 'puppeteer'
+import { ApiOptions } from '../api/fnb-api'
+import { Account } from '../models/account'
 import scrapeAccounts from './scrape-accounts'
 import {scrapeDetailedBalance, DetailedBalanceResponse} from './scrape-detailed-balance'
 import {scrapeTransactions, TransactionsResponse} from './scrape-transactions'
@@ -10,8 +10,8 @@ import {Cache} from './cache'
 export class Scraper {
 	private _loginDate: Moment | undefined
 	private _options: ApiOptions
-	private _browser: Browser | undefined
-	private _page: Page | undefined
+	private _browser: puppeteer.Browser | undefined
+	private _page: puppeteer.Page | undefined
 	private _cache: Cache
 
 	constructor(options: ApiOptions) {
@@ -93,9 +93,9 @@ export class Scraper {
 		}
 	}
 
-	private async _getLoggedInPage(): Promise<Page> {
+	private async _getLoggedInPage(): Promise<puppeteer.Page> {
 		if (this._isLoggedIn()) {
-			return this._page as Page
+			return this._page as puppeteer.Page
 		}
 
 		return this._login()
@@ -106,7 +106,7 @@ export class Scraper {
 			this.close()
 		}
 
-		this._browser = await launch(this._options.puppeteerOptions || {})
+		this._browser = await puppeteer.launch(this._options.puppeteerOptions || {})
 		this._page = await this._browser.newPage()
 		this._page.setViewport({width: 1280, height: 720})
 
@@ -142,7 +142,7 @@ export class Scraper {
 	}
 
 	private async _clickFooterButton() {
-		const page = this._page as Page
+		const page = this._page as puppeteer.Page
 		await page.click('.footerBtn a')
 	}
 
@@ -151,7 +151,7 @@ export class Scraper {
 			return false
 		}
 
-		if ((this._page as Page).isClosed()) {
+		if ((this._page as puppeteer.Page).isClosed()) {
 			return true
 		}
 

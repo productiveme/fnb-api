@@ -1,6 +1,6 @@
 {
   "name": "@productiveme/fnb-api",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "API to easily access bank data from FNB",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -35,21 +35,21 @@
   ],
   "dependencies": {
     "moment": "^2.24.0",
-    "puppeteer": "^2.1.1"
+    "puppeteer": "^13.2.0"
   },
     "devDependencies": {
     "@types/jest": "^26.0.22",
     "@types/jquery": "^3.5.5",
-    "@types/puppeteer": "^2.0.0",
     "@types/node": "^14.11.2",
-    "dotenv": "^8.2.0",
     "gts": "^3.1.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.4",
+    "@types/puppeteer": "^5.4.4",
+    "dotenv": "^16.0.0",
     "prettier": "^2.0.5",
-    "ts-node": "^8.10.1",
+    "ts-node": "^10.5.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.5.5"
   }
 }

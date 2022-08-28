@@ -8,4 +8,5 @@ export enum AccountType {
 	eBucks = 'eBucks',
 	Vehicle = 'Vehicle',
 	Other = 'Other',
+	Easy = 'Easy'
 }
