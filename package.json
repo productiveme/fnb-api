@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "publishConfig": {
-    "registry": "http://nexus.productive.me/repository/npm"
+    "@productiveme:registry":"https://npm.pkg.github.com/"
   },
   "scripts": {
     "test": "jest",
@@ -16,7 +16,8 @@
     "compile": "tsc",
     "fix": "gts fix",
     "prepare": "npm run compile",
-    "pretest": "npm run compile"
+    "pretest": "npm run compile",
+    "publish": "npx dotenv-cli -e .env npm publish; env | grep TOKEN"
   },
   "repository": {
     "type": "git",
