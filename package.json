@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "publishConfig": {
-    "@productiveme:registry":"https://npm.pkg.github.com/"
+    "@productiveme:registry":"https://npm.productive.me/"
   },
   "scripts": {
     "test": "jest",
